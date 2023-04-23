@@ -1,9 +1,9 @@
-import React from 'react'
-import './about.css'
-import ME from '../../assets/me-about.png'
-import { FaAward } from 'react-icons/fa'
-import { FiUsers } from 'react-icons/fi'
-import { VscFolderLibrary } from 'react-icons/vsc'
+import React from "react";
+import "./about.css";
+import ME from "../../assets/me-about.png";
+import { FaAward } from "react-icons/fa";
+import { FiUsers } from "react-icons/fi";
+import { VscFolderLibrary } from "react-icons/vsc";
 
 const About = () => {
   return (
@@ -19,27 +19,35 @@ const About = () => {
         <div className="about__content">
           <div className="about__cards">
             <article className="about__card">
-              <FaAward className='about__icon' />
+              <FaAward className="about__icon" />
               <h5>Experience</h5>
               <small>1+ Years Working</small>
             </article>
             <article className="about__card">
-              <FiUsers className='about__icon' />
-              <h5>Clients</h5>
-              <small>3+ Worldwide</small>
+              <FiUsers className="about__icon" />
+              <h5>Company</h5>
+              <small>LetsGrowMore</small>
+              <small>Developer Abode</small>
             </article>
             <article className="about__card">
-              <VscFolderLibrary className='about__icon' />
+              <VscFolderLibrary className="about__icon" />
               <h5>Projects</h5>
-              <small>15+ Completed</small>
+              <small>20+ Completed</small>
             </article>
           </div>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum placeat ea, veritatis, autem maxime recusandae odio culpa mollitia dignissimos nulla porro? Adipisci odit repellat provident vel sint tenetur optio consequatur.</p>
-          <a href="#contact" className='btn btn-primary'>Let's Talk</a>
+          <p>
+            Hello! I am a Frontend Developer from Uttar Pradesh, India. I have
+            extensive experience in website design and development.
+            Additionally, I am also skilled in Backend Development. I would love
+            to discuss our unique offerings with you.
+          </p>
+          <a href="#contact" className="btn btn-primary">
+            Let's Talk
+          </a>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default About
+export default About;
