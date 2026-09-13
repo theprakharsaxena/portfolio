@@ -1,11 +1,28 @@
 import React from 'react'
-import CV from '../../assets/cv.pdf'
+import Resume from '../../assets/Prakhar Saxena Resume.pdf'
+import { motion } from 'framer-motion'
+import './cta.css'
 
 const CTA = () => {
   return (
     <div className='cta'>
-      <a href={CV} download className='btn'>Download CV</a>
-      <a href="#contact" className='btn btn-primary'>Let's Talk</a>
+      <motion.a
+        href={Resume}
+        download="Prakhar_Saxena_Resume.pdf"
+        className='btn'
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.97 }}
+      >
+        Download Resume
+      </motion.a>
+      <motion.a
+        href="#contact"
+        className='btn btn-primary'
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.97 }}
+      >
+        Let's Talk
+      </motion.a>
     </div>
   )
 }

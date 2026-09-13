@@ -1,53 +1,119 @@
 import React, { useRef } from 'react'
-import './contact.css'
+import { motion } from 'framer-motion'
 import { MdOutlineEmail } from 'react-icons/md'
 import { BsWhatsapp, BsLinkedin } from 'react-icons/bs'
-import emailjs from '@emailjs/browser';
+import emailjs from '@emailjs/browser'
+import './contact.css'
+
+const contactOptions = [
+  {
+    icon: <MdOutlineEmail />,
+    label: 'Email',
+    value: 'prakharsaxena5125@gmail.com',
+    href: 'mailto:prakharsaxena5125@gmail.com',
+    color: '#7c3aed',
+  },
+  {
+    icon: <BsLinkedin />,
+    label: 'LinkedIn',
+    value: 'prakhar-saxena-ps',
+    href: 'https://linkedin.com/in/prakhar-saxena-ps',
+    color: '#06b6d4',
+  },
+  {
+    icon: <BsWhatsapp />,
+    label: 'WhatsApp',
+    value: '+91 9027030960',
+    href: 'https://api.whatsapp.com/send?phone=919027030960&text=Hi!',
+    color: '#a855f7',
+  },
+]
 
 const Contact = () => {
-
-  const form = useRef();
+  const form = useRef()
 
   const sendEmail = (e) => {
-    e.preventDefault();
-
+    e.preventDefault()
     emailjs.sendForm('service_j219qon', 'template_it8gwkm', form.current, '9mwx-mOiTGZxk_3B2')
-
     e.target.reset()
-  };
+  }
 
   return (
-    <section id='contact'>
-      <h5>Get in Touch</h5>
+    <section id="contact">
+      <h5>Get In Touch</h5>
       <h2>Contact Me</h2>
       <div className="container contact__container">
+        {/* Options */}
         <div className="contact__options">
-          <article className="contact__option">
-            <MdOutlineEmail className='contact__option-icon' />
-            <h4>Email</h4>
-            <h5>prakharsaxena5125@gmail.com</h5>
-            <a href="mailto:prakharsaxena5125@gmail.com">Send a message</a>
-          </article>
-          <article className="contact__option">
-            <BsLinkedin className='contact__option-icon' />
-            <h4>LinkedIn</h4>
-            <h5>Prakhar Saxena</h5>
-            <a href="https://www.linkedin.com/in/prakhar-saxena-a54949242/">Send a message</a>
-          </article>
-          <article className="contact__option">
-            <BsWhatsapp className='contact__option-icon' />
-            <h4>WhatsApp</h4>
-            <h5>+91 9027030960</h5>
-            <a href="https://api.whatsapp.com/send?phone=919027030960&text=Hi,%20buddy">Send a message</a>
-          </article>
+          {contactOptions.map((opt, i) => (
+            <motion.article
+              key={opt.label}
+              className="contact__option glass-card"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.12, duration: 0.6 }}
+              whileHover={{ x: 8 }}
+              style={{ '--opt-color': opt.color }}
+            >
+              <div className="contact__opt-icon" style={{ color: opt.color, background: opt.color + '20' }}>
+                {opt.icon}
+              </div>
+              <div className="contact__opt-info">
+                <h4>{opt.label}</h4>
+                <p>{opt.value}</p>
+                <a href={opt.href} target="_blank" rel="noreferrer">
+                  Send a message →
+                </a>
+              </div>
+            </motion.article>
+          ))}
         </div>
-        {/* END OF CONTACT OPTIONS */}
-        <form ref={form} onSubmit={sendEmail}>
-          <input type="text" name='name' placeholder='Your Full Name' required />
-          <input type="email" name='email' placeholder='Your Email' required />
-          <textarea name="message" rows="7" placeholder='Your Message' required ></textarea>
-          <button type='submit' className='btn btn-primary'><h3>Send Message</h3></button>
-        </form>
+
+        {/* Form */}
+        <motion.form
+          ref={form}
+          onSubmit={sendEmail}
+          className="contact__form glass-card"
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <h3 className="contact__form-title">Send Me a Message</h3>
+          <div className="contact__form-field">
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Full Name"
+              required
+            />
+          </div>
+          <div className="contact__form-field">
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email Address"
+              required
+            />
+          </div>
+          <div className="contact__form-field">
+            <textarea
+              name="message"
+              rows="6"
+              placeholder="Your Message..."
+              required
+            />
+          </div>
+          <motion.button
+            type="submit"
+            className="btn btn-primary contact__submit"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            Send Message ✉️
+          </motion.button>
+        </motion.form>
       </div>
     </section>
   )

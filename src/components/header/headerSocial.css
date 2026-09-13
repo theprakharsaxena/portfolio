@@ -1,0 +1,27 @@
+.header__socials {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header__social-link {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--color-light);
+  background: var(--color-bg-glass);
+  border: 1px solid var(--color-border-light);
+  backdrop-filter: blur(10px);
+  transition: var(--transition);
+}
+
+.header__social-link:hover {
+  color: var(--color-white);
+  border-color: var(--color-primary);
+  background: var(--color-primary-variant);
+  box-shadow: var(--glow-primary);
+}
