@@ -15,7 +15,7 @@ const techStack = ['React.js', 'REST APIs', 'Node.js', 'AWS', 'Firebase', 'Redux
 const WorkExperience = () => {
   return (
     <section id="work-experience">
-      <h5>Professional History</h5>
+      <h5>// 02. CAREER</h5>
       <h2>Work Experience</h2>
       <div className="container work__container">
         <motion.div

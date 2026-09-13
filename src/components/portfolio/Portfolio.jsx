@@ -145,8 +145,8 @@ const ProjectCard = ({ project, index }) => {
 const Portfolio = () => {
   return (
     <section id="portfolio">
-      <h5>My Recent Work</h5>
-      <h2>Personal Projects</h2>
+      <h5>// 05. PORTFOLIO</h5>
+      <h2>Featured Projects</h2>
       <div className="container portfolio__container">
         {projects.map((project, i) => (
           <ProjectCard key={project.id} project={project} index={i} />
