@@ -9,6 +9,8 @@ import IMG4 from '../../assets/portfolio4.png'
 import IMG5 from '../../assets/portfolio5.png'
 import IMG6 from '../../assets/portfolio6.png'
 import IMG7 from '../../assets/portfolio7.png'
+import IMG8 from '../../assets/portfolio8.png'
+import IMG9 from '../../assets/portfolio9.png'
 
 const projects = [
   /* ── Top 3 Featured Cards (Fixed as per resume) ── */
@@ -25,7 +27,7 @@ const projects = [
   },
   {
     id: 2,
-    image: IMG2,
+    image: IMG8,
     title: 'Shopping Cart (Luxora)',
     subtitle: 'Full Stack E-commerce Platform',
     desc: 'Built a full-stack e-commerce platform with React.js, Node.js, and MongoDB. Implemented authentication, product management, shopping cart functionality, responsive UI, and REST API integration.',
@@ -36,7 +38,7 @@ const projects = [
   },
   {
     id: 3,
-    image: IMG3,
+    image: IMG9,
     title: 'Tie & Style',
     subtitle: 'Fashion Accessories E-commerce Website',
     desc: 'Developed an e-commerce website for bows and scrunchies using React.js and Redux, with product catalog, category-based collections, shopping cart, and product purchasing functionality.',
