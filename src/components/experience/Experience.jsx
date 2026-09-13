@@ -59,8 +59,8 @@ const SkillCard = ({ skill, index }) => (
 const Experience = () => {
   return (
     <section id="experience">
-      <h5>// 03. TECHNICAL STACK</h5>
-      <h2>Skills & Capabilities</h2>
+      <h5>What I Work With</h5>
+      <h2>Technical Skills</h2>
       <div className="container experience__container">
         <motion.div
           className="experience__group glass-card"
