@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './nav.css'
 import { AiOutlineHome, AiOutlineUser } from 'react-icons/ai'
@@ -20,6 +20,40 @@ const navItems = [
 const Nav = () => {
   const [activeNav, setActiveNav] = useState('#header')
   const [tooltip, setTooltip] = useState(null)
+
+  // Scroll spy — updates active tab as sections enter the viewport
+  useEffect(() => {
+    const observers = []
+
+    navItems.forEach(({ id }) => {
+      const sectionId = id.replace('#', '')
+      const el = document.getElementById(sectionId)
+      if (!el) return
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveNav(id)
+            }
+          })
+        },
+        {
+          root: null,
+          // Fires when section crosses the upper ~40% zone of the screen
+          rootMargin: '-30% 0px -55% 0px',
+          threshold: 0,
+        }
+      )
+
+      observer.observe(el)
+      observers.push(observer)
+    })
+
+    return () => {
+      observers.forEach((obs) => obs.disconnect())
+    }
+  }, [])
 
   return (
     <motion.nav
