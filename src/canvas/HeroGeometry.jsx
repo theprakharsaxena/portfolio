@@ -1,68 +1,83 @@
 import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Float } from '@react-three/drei'
-import * as THREE from 'three'
 
-// Main 3D Tech Core Orb (Layered Geodesic Sphere + Glowing Core)
-const CoreTechOrb = ({ position = [3.2, 0.2, -1], scale = 1.6 }) => {
+// Signature 3D Glowing Tech Orb (Smooth Glass Plasma Core + Dual Wireframe Shell + Atom Ring)
+const CoreTechOrb = ({ position = [2.6, 0.1, -1], scale = 1.35 }) => {
   const outerRef = useRef()
   const innerRef = useRef()
   const ringRef = useRef()
+  const ring2Ref = useRef()
 
   useFrame((state) => {
     const time = state.clock.elapsedTime
     if (outerRef.current) {
-      outerRef.current.rotation.x = time * 0.15
-      outerRef.current.rotation.y = time * 0.2
+      outerRef.current.rotation.x = time * 0.12
+      outerRef.current.rotation.y = time * 0.18
     }
     if (innerRef.current) {
-      innerRef.current.rotation.x = -time * 0.25
-      innerRef.current.rotation.y = -time * 0.15
+      innerRef.current.rotation.x = -time * 0.15
+      innerRef.current.rotation.y = -time * 0.22
     }
     if (ringRef.current) {
-      ringRef.current.rotation.z = time * 0.1
-      ringRef.current.rotation.y = Math.sin(time * 0.3) * 0.2
+      ringRef.current.rotation.z = time * 0.25
+      ringRef.current.rotation.x = Math.sin(time * 0.2) * 0.3 + 1.1
+    }
+    if (ring2Ref.current) {
+      ring2Ref.current.rotation.z = -time * 0.2
+      ring2Ref.current.rotation.y = Math.cos(time * 0.25) * 0.4 + 0.8
     }
   })
 
   return (
-    <Float speed={2} rotationIntensity={0.3} floatIntensity={1.2}>
+    <Float speed={2} rotationIntensity={0.25} floatIntensity={1}>
       <group position={position} scale={scale}>
-        {/* Outer wireframe geodesic shell */}
+        {/* Outer wireframe geodesic shell - Cyan Glow */}
         <mesh ref={outerRef}>
-          <icosahedronGeometry args={[1.2, 2]} />
+          <icosahedronGeometry args={[1.35, 2]} />
           <meshStandardMaterial
             color="#06b6d4"
             wireframe
             transparent
-            opacity={0.35}
+            opacity={0.3}
             emissive="#06b6d4"
-            emissiveIntensity={0.3}
+            emissiveIntensity={0.4}
           />
         </mesh>
 
-        {/* Inner solid glowing core */}
+        {/* Smooth Inner Glowing Core - High Poly Glass Sphere */}
         <mesh ref={innerRef}>
-          <icosahedronGeometry args={[0.75, 1]} />
-          <meshStandardMaterial
+          <sphereGeometry args={[0.82, 64, 64]} />
+          <meshPhysicalMaterial
             color="#7c3aed"
+            emissive="#5b21b6"
+            emissiveIntensity={0.8}
             roughness={0.1}
-            metalness={0.8}
-            emissive="#6d28d9"
-            emissiveIntensity={0.6}
+            metalness={0.1}
+            clearcoat={1}
+            clearcoatRoughness={0.1}
             transparent
-            opacity={0.85}
+            opacity={0.9}
           />
         </mesh>
 
-        {/* Floating orbit dots */}
+        {/* Orbit Ring 1 - Cyan Neon Atom Ring */}
         <mesh ref={ringRef}>
-          <sphereGeometry args={[1.5, 16, 16]} />
+          <torusGeometry args={[1.65, 0.012, 16, 100]} />
+          <meshBasicMaterial
+            color="#06b6d4"
+            transparent
+            opacity={0.7}
+          />
+        </mesh>
+
+        {/* Orbit Ring 2 - Purple Glow Ring */}
+        <mesh ref={ring2Ref}>
+          <torusGeometry args={[1.9, 0.01, 16, 100]} />
           <meshBasicMaterial
             color="#a855f7"
-            wireframe
             transparent
-            opacity={0.08}
+            opacity={0.5}
           />
         </mesh>
       </group>
@@ -70,30 +85,28 @@ const CoreTechOrb = ({ position = [3.2, 0.2, -1], scale = 1.6 }) => {
   )
 }
 
-// Subtle ambient glowing polyhedrons in deep background space
-const AmbientPolyhedron = ({ position, scale, color, speed = 1, geometry = 'icosa' }) => {
+// Far Background Ambient Polyhedron (distanced so it never collides with UI text)
+const FarAmbientElement = ({ position, scale, color, speed = 1 }) => {
   const meshRef = useRef()
 
   useFrame((state) => {
     if (!meshRef.current) return
     const time = state.clock.elapsedTime
-    meshRef.current.rotation.x = time * 0.1 * speed
-    meshRef.current.rotation.y = time * 0.15 * speed
+    meshRef.current.rotation.x = time * 0.08 * speed
+    meshRef.current.rotation.y = time * 0.12 * speed
   })
 
   return (
-    <Float speed={1.2 * speed} rotationIntensity={0.4} floatIntensity={1}>
+    <Float speed={1.2 * speed} rotationIntensity={0.3} floatIntensity={0.8}>
       <mesh ref={meshRef} position={position} scale={scale}>
-        {geometry === 'icosa' && <icosahedronGeometry args={[1, 1]} />}
-        {geometry === 'dodeca' && <dodecahedronGeometry args={[1, 0]} />}
-        {geometry === 'octa' && <octahedronGeometry args={[1, 0]} />}
+        <icosahedronGeometry args={[1, 1]} />
         <meshStandardMaterial
           color={color}
           wireframe
           transparent
-          opacity={0.25}
+          opacity={0.15}
           emissive={color}
-          emissiveIntensity={0.2}
+          emissiveIntensity={0.15}
         />
       </mesh>
     </Float>
@@ -106,37 +119,28 @@ const HeroGeometry = () => {
   useFrame((state) => {
     if (!groupRef.current) return
     const mouse = state.mouse
-    // Smooth group parallax following mouse
-    groupRef.current.position.x += (mouse.x * 0.6 - groupRef.current.position.x) * 0.03
-    groupRef.current.position.y += (mouse.y * 0.6 - groupRef.current.position.y) * 0.03
+    // Smooth responsive parallax following mouse
+    groupRef.current.position.x += (mouse.x * 0.5 - groupRef.current.position.x) * 0.03
+    groupRef.current.position.y += (mouse.y * 0.5 - groupRef.current.position.y) * 0.03
   })
 
   return (
     <group ref={groupRef}>
-      {/* Signature 3D Tech Core Orb on Hero Right */}
-      <CoreTechOrb position={[3.5, 0, -1]} scale={1.5} />
+      {/* Primary 3D Tech Core Orb (Right side) */}
+      <CoreTechOrb position={[2.5, 0.1, -1]} scale={1.35} />
 
-      {/* Subtle ambient wireframe elements carefully distributed */}
-      <AmbientPolyhedron
-        position={[-4.5, 2, -4]}
-        scale={0.7}
+      {/* Far Distant Ambient Floating Crystals (positioned high & away from text) */}
+      <FarAmbientElement
+        position={[-6, 3, -6]}
+        scale={0.8}
         color="#7c3aed"
-        speed={0.8}
-        geometry="icosa"
+        speed={0.7}
       />
-      <AmbientPolyhedron
-        position={[-3.8, -2.2, -3]}
-        scale={0.55}
+      <FarAmbientElement
+        position={[6, -3, -6]}
+        scale={0.7}
         color="#06b6d4"
-        speed={1.1}
-        geometry="dodeca"
-      />
-      <AmbientPolyhedron
-        position={[4.2, -2.5, -4]}
-        scale={0.6}
-        color="#a855f7"
         speed={0.9}
-        geometry="octa"
       />
     </group>
   )
