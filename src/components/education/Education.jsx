@@ -39,7 +39,7 @@ const certifications = [
 const Education = () => {
   return (
     <section id="education">
-      <h5>My Background</h5>
+      <h5>{"// 04. ACADEMICS"}</h5>
       <h2>Education & Certifications</h2>
       <div className="container education__container">
         {/* Education Column */}
