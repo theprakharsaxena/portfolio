@@ -6,23 +6,23 @@ import './experience.css'
 const frontendSkills = [
   { name: 'React.js', level: 'Expert' },
   { name: 'Next.js', level: 'Advanced' },
-  { name: 'React Native', level: 'Intermediate' },
   { name: 'Redux Toolkit', level: 'Expert' },
-  { name: 'JavaScript / TypeScript', level: 'Expert' },
-  { name: 'Tailwind CSS / Shadcn UI', level: 'Expert' },
-  { name: 'Vite & Vue.js', level: 'Intermediate' },
-  { name: 'HTML5 / CSS3', level: 'Expert' },
+  { name: 'Vite & Vue.js', level: 'Advanced' },
+  { name: 'Tailwind CSS & Shadcn UI', level: 'Expert' },
+  { name: 'Material-UI & Bootstrap', level: 'Advanced' },
+  { name: 'HTML5 & CSS3', level: 'Expert' },
+  { name: 'React Native (Mobile)', level: 'Intermediate' },
 ]
 
 const backendSkills = [
-  { name: 'Node.js', level: 'Expert' },
-  { name: 'Express.js', level: 'Expert' },
-  { name: 'MongoDB & MySQL', level: 'Expert' },
-  { name: 'REST APIs & JWT', level: 'Expert' },
+  { name: 'JavaScript & TypeScript', level: 'Expert' },
+  { name: 'Node.js & Express.js', level: 'Expert' },
+  { name: 'MongoDB', level: 'Expert' },
+  { name: 'REST APIs & JWT Auth', level: 'Expert' },
   { name: 'AWS & Firebase', level: 'Intermediate' },
-  { name: 'Git, GitHub & Vercel', level: 'Expert' },
-  { name: 'TanStack Query', level: 'Advanced' },
-  { name: 'Postman & Swagger', level: 'Expert' },
+  { name: 'Vercel & Cloudinary', level: 'Advanced' },
+  { name: 'Git, GitHub & Figma', level: 'Expert' },
+  { name: 'Postman, Swagger & TanStack Query', level: 'Expert' },
 ]
 
 const levelColors = {
@@ -37,8 +37,8 @@ const SkillCard = ({ skill, index }) => (
     initial={{ opacity: 0, scale: 0.8 }}
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true, amount: 0.3 }}
-    transition={{ delay: index * 0.07, duration: 0.4 }}
-    whileHover={{ scale: 1.05, y: -3 }}
+    transition={{ delay: index * 0.05, duration: 0.4 }}
+    whileHover={{ scale: 1.04, y: -2 }}
   >
     <BsFillPatchCheckFill
       className="skill__icon"
@@ -71,7 +71,7 @@ const Experience = () => {
         >
           <h3 className="experience__group-title">
             <span className="experience__group-icon">⚡</span>
-            Frontend & Mobile
+            Frontend & Mobile App Development
           </h3>
           <div className="experience__grid">
             {frontendSkills.map((skill, i) => (
@@ -89,7 +89,7 @@ const Experience = () => {
         >
           <h3 className="experience__group-title">
             <span className="experience__group-icon">🔧</span>
-            Backend, Cloud & Tools
+            Backend, Database & Cloud Services
           </h3>
           <div className="experience__grid">
             {backendSkills.map((skill, i) => (
