@@ -3,6 +3,9 @@ import { motion } from 'framer-motion'
 import { MdWork, MdLaunch, MdCheckCircle } from 'react-icons/md'
 import './workExperience.css'
 
+import STOCK1 from '../../assets/StockRegister1.png'
+import STOCK2 from '../../assets/StockRegister2.png'
+
 const responsibilities = [
   'Added new features and maintained inventory management applications across web and Android platforms using React.js and REST APIs.',
   'Developed and maintained modules for inventory, orders, authentication, payments, and application workflows.',
@@ -69,6 +72,41 @@ const WorkExperience = () => {
               </motion.li>
             ))}
           </ul>
+
+          {/* Work Platform Screenshots Showcase */}
+          <div className="work__showcase">
+            <div className="work__showcase-grid">
+              {/* 1. Company Homepage */}
+              <motion.div
+                className="work__img-card"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="work__img-browser-bar">
+                  <span className="dot red" />
+                  <span className="dot yellow" />
+                  <span className="dot green" />
+                  <span className="browser-title">Stock Register Official Website</span>
+                </div>
+                <img src={STOCK1} alt="Stock Register Official Website Landing" />
+              </motion.div>
+
+              {/* 2. Main Web App Software */}
+              <motion.div
+                className="work__img-card"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="work__img-browser-bar">
+                  <span className="dot red" />
+                  <span className="dot yellow" />
+                  <span className="dot green" />
+                  <span className="browser-title">Inventory & Billing Web Application</span>
+                </div>
+                <img src={STOCK2} alt="Stock Register Web App Inventory Software" />
+              </motion.div>
+            </div>
+          </div>
 
           <div className="work__tech">
             {techStack.map((tech) => (

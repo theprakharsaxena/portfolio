@@ -8,11 +8,13 @@ import IMG3 from '../../assets/portfolio3.png'
 import IMG4 from '../../assets/portfolio4.png'
 import IMG5 from '../../assets/portfolio5.png'
 import IMG6 from '../../assets/portfolio6.png'
+import IMG7 from '../../assets/portfolio7.png'
 
 const projects = [
+  /* ── Top 3 Featured Cards (Fixed as per resume) ── */
   {
     id: 1,
-    image: IMG1,
+    image: IMG7,
     title: 'PropLedger',
     subtitle: 'Decentralized Real Estate Platform',
     desc: 'Developed a decentralized real estate platform for fractional ownership of premium real estate assets using React, Vite, Tailwind CSS, Solidity, Hardhat, and Ethers.js. Implemented smart contracts for property tokenization and CAPX token vesting using the CAPShield Protocol.',
@@ -23,7 +25,7 @@ const projects = [
   },
   {
     id: 2,
-    image: IMG5,
+    image: IMG2,
     title: 'Shopping Cart (Luxora)',
     subtitle: 'Full Stack E-commerce Platform',
     desc: 'Built a full-stack e-commerce platform with React.js, Node.js, and MongoDB. Implemented authentication, product management, shopping cart functionality, responsive UI, and REST API integration.',
@@ -43,13 +45,15 @@ const projects = [
     demo: 'https://tie-and-style.netlify.app',
     color: '#a855f7',
   },
+
+  /* ── 6 Additional Cards ── */
   {
     id: 4,
-    image: IMG4,
+    image: IMG1,
     title: 'Developer Abode',
-    subtitle: 'Developer Community Platform',
-    desc: 'Developer community platform for resources, tools, and collaboration among developers.',
-    tags: ['React', 'Node.js', 'MongoDB'],
+    subtitle: 'EdTech & Student Developer Platform',
+    desc: 'EdTech and community platform empowering students and developers with real-world tech internships, skill development resources, technical articles, and collaborative learning.',
+    tags: ['Next.js', 'React', 'Tailwind CSS', 'Node.js', 'MongoDB'],
     github: 'https://github.com/theprakharsaxena/Developer-Abode',
     demo: 'https://www.developerabode.com/',
     color: '#7c3aed',
@@ -57,6 +61,39 @@ const projects = [
   {
     id: 5,
     image: IMG2,
+    title: 'Youtube Clone',
+    subtitle: 'Video Streaming Web App',
+    desc: 'A full-featured YouTube clone web application with video search, video player, and responsive UI.',
+    tags: ['React.js', 'JavaScript', 'CSS3', 'REST API'],
+    github: 'https://github.com/theprakharsaxena/youtube-clone',
+    demo: 'https://gdxv7z.csb.app/',
+    color: '#06b6d4',
+  },
+  {
+    id: 6,
+    image: IMG3,
+    title: 'Recipe App',
+    subtitle: 'Food & Cooking Recipes App',
+    desc: 'Interactive recipe search and discovery web application with detailed cooking instructions and ingredients list.',
+    tags: ['React.js', 'JavaScript', 'API Integration'],
+    github: 'https://github.com/theprakharsaxena/recipe-app',
+    demo: 'https://yvwj0m.csb.app/',
+    color: '#a855f7',
+  },
+  {
+    id: 7,
+    image: IMG4,
+    title: 'Calculator',
+    subtitle: 'Web Calculator Tool',
+    desc: 'Sleek and interactive web calculator for standard mathematical operations.',
+    tags: ['HTML5', 'CSS3', 'JavaScript'],
+    github: 'https://github.com/theprakharsaxena/calculator-LGMVIP-Web',
+    demo: 'https://7qg7cc.csb.app/',
+    color: '#7c3aed',
+  },
+  {
+    id: 8,
+    image: IMG5,
     title: 'Ecommerce Redux Toolkit',
     subtitle: 'State-Managed E-commerce',
     desc: 'E-commerce web app built with React and Redux Toolkit for efficient state management and cart handling.',
@@ -66,9 +103,9 @@ const projects = [
     color: '#06b6d4',
   },
   {
-    id: 6,
+    id: 9,
     image: IMG6,
-    title: 'Spin Wheel',
+    title: 'Spin Wheel on Ecommerce',
     subtitle: 'Gamified E-commerce Feature',
     desc: 'Interactive gamified spin-wheel for promotional discounts in e-commerce applications.',
     tags: ['React.js', 'JavaScript', 'CSS3'],
