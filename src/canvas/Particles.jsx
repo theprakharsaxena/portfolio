@@ -32,10 +32,9 @@ const Particles = ({ count = 4000 }) => {
   // Build circular texture once
   const circleTexture = useMemo(() => createCircleTexture(), [])
 
-  const [positions, colors, sizes] = useMemo(() => {
+  const [positions, colors] = useMemo(() => {
     const pos = new Float32Array(count * 3)
     const col = new Float32Array(count * 3)
-    const siz = new Float32Array(count)
 
     const primaryColor = new THREE.Color('#7c3aed')
     const accentColor  = new THREE.Color('#06b6d4')
@@ -57,13 +56,9 @@ const Particles = ({ count = 4000 }) => {
       col[i3 + 1] = c.g
       col[i3 + 2] = c.b
 
-      // Small random sizes — mostly tiny, occasionally slightly larger
-      siz[i] = Math.random() < 0.05
-        ? 0.12 + Math.random() * 0.08   // ~5% are slightly bigger "stars"
-        : 0.03 + Math.random() * 0.05   // 95% are tiny
     }
 
-    return [pos, col, siz]
+    return [pos, col]
   }, [count])
 
   useFrame((state) => {
